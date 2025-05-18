@@ -30,7 +30,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <Link href="/" className="text-2xl font-bold tracking-tighter mb-4 inline-block">
-              PULSE<span className="text-white/70">PR</span>
+              NE<span className="text-white/70">ST</span>
             </Link>
             <p className="text-white/70 mt-4 max-w-md">
               A modern PR agency dedicated to elevating brands through strategic communication and innovative storytelling.
@@ -140,7 +140,7 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} PulsePR. All rights reserved.
+            © {new Date().getFullYear()} NEST. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="#" className="text-white/50 text-sm hover:text-white transition-colors">

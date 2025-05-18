@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Pulse PR | Modern Public Relations Agency',
+  title: 'NEST',
   description: 'A modern PR agency specializing in digital communications, brand strategy, and media relations',
 };
 

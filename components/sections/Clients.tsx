@@ -8,25 +8,25 @@ import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Working with PulsePR transformed our brand positioning. Their strategic approach and media relationships led to coverage in publications we'd been targeting for years.",
+    quote: "Working with NEST transformed our brand positioning. Their strategic approach and media relationships led to coverage in publications we'd been targeting for years.",
     name: "Alex Johnson",
     title: "CMO, TechVision Inc.",
     logoUrl: "https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    quote: "The PulsePR team handled our product launch flawlessly. Their attention to detail and creative strategy resulted in significant media coverage and social engagement.",
+    quote: "The NEST team handled our product launch flawlessly. Their attention to detail and creative strategy resulted in significant media coverage and social engagement.",
     name: "Sarah Williams",
     title: "Founder, EcoStyle",
     logoUrl: "https://images.pexels.com/photos/2249063/pexels-photo-2249063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    quote: "During our company's crisis, PulsePR's quick response and clear communication strategy helped us maintain trust with our customers and protect our reputation.",
+    quote: "During our company's crisis, NEST's quick response and clear communication strategy helped us maintain trust with our customers and protect our reputation.",
     name: "Michael Chen",
     title: "CEO, Innovate Solutions",
     logoUrl: "https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    quote: "PulsePR's influencer strategy connected us with the perfect partners to authentically reach our target audience, resulting in a 200% increase in brand awareness.",
+    quote: "NEST's influencer strategy connected us with the perfect partners to authentically reach our target audience, resulting in a 200% increase in brand awareness.",
     name: "Emily Rodriguez",
     title: "Marketing Director, Urban Lifestyle",
     logoUrl: "https://images.pexels.com/photos/3756766/pexels-photo-3756766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",

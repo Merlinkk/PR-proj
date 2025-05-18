@@ -81,7 +81,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Our Office</h4>
-                    <p className="text-white/70">123 PR Avenue, Suite 456<br />New York, NY 10001</p>
+                    <p className="text-white/70">EARTH 10001</p>
                   </div>
                 </div>
                 
@@ -91,7 +91,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Email Us</h4>
-                    <p className="text-white/70">hello@pulsepr.com<br />info@pulsepr.com</p>
+                    <p className="text-white/70">hello@nest.com<br />info@nest.com</p>
                   </div>
                 </div>
                 
@@ -101,7 +101,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Call Us</h4>
-                    <p className="text-white/70">+1 (212) 555-7890<br />+1 (800) 555-1234</p>
+                    <p className="text-white/70">+91 0000-000-000<br />+91 0000-000-000</p>
                   </div>
                 </div>
               </div>

@@ -14,7 +14,7 @@ const teamMembers = [
     socials: {
       linkedin: "#",
       twitter: "#",
-      email: "mailto:alexandra@pulsepr.com",
+      email: "mailto:alexandra@nest.com",
     },
   },
   {
@@ -25,7 +25,7 @@ const teamMembers = [
     socials: {
       linkedin: "#",
       twitter: "#",
-      email: "mailto:david@pulsepr.com",
+      email: "mailto:david@nest.com",
     },
   },
   {
@@ -36,7 +36,7 @@ const teamMembers = [
     socials: {
       linkedin: "#",
       twitter: "#",
-      email: "mailto:sophia@pulsepr.com",
+      email: "mailto:sophia@nest.com",
     },
   },
   {
@@ -47,7 +47,7 @@ const teamMembers = [
     socials: {
       linkedin: "#",
       twitter: "#",
-      email: "mailto:marcus@pulsepr.com",
+      email: "mailto:marcus@nest.com",
     },
   },
 ];
@@ -82,7 +82,7 @@ export function TeamSection() {
               >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <img
-                    src={member.image}
+                    src={"https://w0.peakpx.com/wallpaper/310/869/HD-wallpaper-black-screen-space-thumbnail.jpg"}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
@@ -126,9 +126,9 @@ export function TeamSection() {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold">{member.name}</h3>
-                  <p className="text-white/70 mb-4">{member.role}</p>
-                  <p className="text-white/80 text-sm">{member.bio}</p>
+                  <h3 className="text-xl font-bold">{"Member"}</h3>
+                  <p className="text-white/70 mb-4">{"role"}</p>
+                  <p className="text-white/80 text-sm">{"short description"}</p>
                 </div>
               </motion.div>
             </FadeIn>
