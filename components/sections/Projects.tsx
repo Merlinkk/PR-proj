@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, ReactNode } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -13,6 +13,11 @@ type Project = {
   description: string;
   image: string;
   results: string[];
+};
+
+type FadeInSectionProps = {
+  children: ReactNode;
+  delay?: number;
 };
 
 const projects: Project[] = [
@@ -68,8 +73,8 @@ const projects: Project[] = [
 
 const categories = ["All", "Brand Strategy", "Product Launch", "Crisis Management", "Event PR", "Influencer Marketing", "Digital PR"];
 
-const FadeInSection = ({ children, delay = 0 }) => {
-  const ref = useRef(null);
+const FadeInSection = ({ children, delay = 0 }: FadeInSectionProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
   return (

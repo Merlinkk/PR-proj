@@ -103,8 +103,9 @@ const services = [
 ];
 
 export function ServicesSection() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [hoveredPlatform, setHoveredPlatform] = useState(null);
+  // Fixed type definitions to accept either null or number
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredPlatform, setHoveredPlatform] = useState<number | null>(null);
 
   return (
     <section id="services" className="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">

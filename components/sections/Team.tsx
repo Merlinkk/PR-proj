@@ -58,7 +58,7 @@ const teamMembers = [
     experience: "3+ Years",
     projects: "100+",
     socials: {
-      linkedin: "https://www.linkedin.com/in/satyam-sharma-a21041289/",
+      linkedin: "#",
       twitter: "#",
       email: "mailto:satyam@nest.com",
     },
@@ -74,7 +74,7 @@ const teamMembers = [
     experience: "6+ Years",
     projects: "80+",
     socials: {
-      linkedin: "https://www.linkedin.com/in/anshul-kashyap-60930012b/",
+      linkedin: "#",
       twitter: "#",
       email: "mailto:anshul@nest.com",
     },
@@ -82,7 +82,7 @@ const teamMembers = [
 ];
 
 export function TeamSection() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
