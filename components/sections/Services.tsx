@@ -3,11 +3,8 @@
 import { useState } from 'react';
 import { 
   Megaphone, 
-  BarChart3, 
-  ShieldAlert, 
   Globe, 
   Users, 
-  PenTool,
   ArrowRight,
   Star,
   MessageCircle,
@@ -15,7 +12,12 @@ import {
   Video,
   Briefcase,
   TrendingUp,
-  Eye
+  Eye,
+  LineChart,
+  Palette,
+  Lightbulb,
+  Search,
+  Presentation
 } from 'lucide-react';
 
 const socialPlatforms = [
@@ -60,45 +62,52 @@ const socialPlatforms = [
 const services = [
   {
     icon: <Megaphone className="w-8 h-8" />,
-    title: 'PR Strategy',
-    description: 'Develop comprehensive PR strategies aligned with your business goals and target audience needs.',
+    title: 'Public Relations',
+    description: 'We craft thoughtful PR strategies that reflect your purpose. From media placements to brand reputation, we help you speak with authenticity.',
     gradient: 'from-purple-500 to-pink-500',
-    features: ['Strategic Planning', 'Market Analysis', 'Goal Setting']
+    features: ['Media Relations', 'Crisis Management', 'Reputation Building']
   },
   {
-    icon: <BarChart3 className="w-8 h-8" />,
-    title: 'Media Relations',
-    description: 'Build and maintain relationships with key media outlets to secure valuable coverage for your brand.',
+    icon: <LineChart className="w-8 h-8" />, // Changed icon to LineChart
+    title: 'Social Media Management',
+    description: 'Tailored content calendars, emotional storytelling, trend integration, and real-time engagement across platforms.',
     gradient: 'from-blue-500 to-cyan-500',
-    features: ['Press Releases', 'Media Outreach', 'Coverage Analysis']
+    features: ['Content Strategy', 'Community Engagement', 'Performance Analytics'] // Updated features
   },
   {
-    icon: <ShieldAlert className="w-8 h-8" />,
-    title: 'Crisis Management',
-    description: 'Navigate challenging situations with strategic communication plans that protect your reputation.',
+    icon: <Users className="w-8 h-8" />, // Changed icon to Users
+    title: 'Influencer Campaigns',
+    description: 'We handpick value-driven influencers who align with your ethics and message-not just follower count.',
     gradient: 'from-red-500 to-orange-500',
-    features: ['Crisis Planning', 'Rapid Response', 'Reputation Recovery']
+    features: ['Influencer Identification', 'Campaign Management', 'Authenticity & Ethics'] // Updated features
   },
   {
-    icon: <Globe className="w-8 h-8" />,
-    title: 'Digital PR',
-    description: 'Extend your reach online through digital PR tactics that improve visibility and engagement.',
-    gradient: 'from-green-500 to-teal-500',
-    features: ['SEO PR', 'Online Campaigns', 'Digital Analytics']
-  },
-  {
-    icon: <Users className="w-8 h-8" />,
-    title: 'Influencer Marketing',
-    description: 'Connect with relevant influencers to amplify your message and reach new audiences authentically.',
-    gradient: 'from-yellow-500 to-orange-500',
-    features: ['Influencer Outreach', 'Campaign Management', 'Performance Tracking']
-  },
-  {
-    icon: <PenTool className="w-8 h-8" />,
+    icon: <Palette className="w-8 h-8" />, // Changed icon to Palette
     title: 'Content Creation',
-    description: 'Craft compelling stories and content that resonates with your audience and drives engagement.',
+    description: 'We create visuals, reels, carousels, and brand stories that touch hearts and start conversations.',
+    gradient: 'from-green-500 to-teal-500',
+    features: ['Visual Storytelling', 'Short-Form Video', 'Brand Narrative Development'] // Updated features
+  },
+  {
+    icon: <Lightbulb className="w-8 h-8" />, // Changed icon to Lightbulb
+    title: 'Crisis Communication',
+    description: 'Empathy-based, grounded responses during crises. We help your brand stay calm, transparent, and human.',
+    gradient: 'from-yellow-500 to-orange-500',
+    features: ['Rapid Response Planning', 'Stakeholder Communication', 'Reputation Recovery'] // Updated features
+  },
+  {
+    icon: <Search className="w-8 h-8" />, // Changed icon to Search
+    title: 'Trend & Audience Research',
+    description: 'Monthly data-backed reports to decode behavior, psychology, and sentiment of your digital audience.',
     gradient: 'from-indigo-500 to-purple-500',
-    features: ['Storytelling', 'Visual Content', 'Brand Voice']
+    features: ['Market Trend Analysis', 'Audience Segmentation', 'Behavioral Insights'] // Updated features
+  },
+  {
+    icon: <Presentation className="w-8 h-8" />, // New icon: Presentation
+    title: 'Political Branding & Strategy',
+    description: 'Specialized strategies for political personalities and causes, with regional insight and emotional clarity.',
+    gradient: 'from-pink-500 to-red-500', // Adjusted gradient for distinctiveness
+    features: ['Campaign Messaging', 'Constituency Engagement', 'Public Perception Management'] // Updated features
   },
 ];
 
@@ -288,12 +297,9 @@ export function ServicesSection() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
         {/* Bottom CTA */}
-        <div className="text-center">
-          <div className="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-sm">
+        <div className="text-center col-start-2 col-end-4 row-start-2 row-end-3 flex items-center justify-center">
+          <div className="inline-flex flex-col md:flex-row items-center gap-6 p-28 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-sm">
             <div className="flex items-center gap-4">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
@@ -310,6 +316,9 @@ export function ServicesSection() {
             </button>
           </div>
         </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

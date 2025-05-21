@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-black text-white antialiased`}>
+      <body className={`${inter.className} bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white antialiased`}>
         <ThemeProvider 
           attribute="class"
           defaultTheme="dark"
