@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from 'react';
-import { 
-  Megaphone, 
-  Globe, 
-  Users, 
+import {
+  Megaphone,
+  Globe,
+  Users,
   ArrowRight,
   Star,
   Camera,
@@ -19,6 +19,7 @@ import {
   X,
   Twitter
 } from 'lucide-react';
+import Link from 'next/link';
 
 const socialPlatforms = [
   {
@@ -61,48 +62,55 @@ const socialPlatforms = [
 
 const services = [
   {
+    id: 'public-relations',
     icon: <Megaphone className="w-8 h-8" />,
     title: 'Public Relations',
-    description: 'We craft thoughtful PR strategies that reflect your purpose. From media placements to brand reputation, we help you speak with authenticity.',
+    description: 'We craft thoughtful PR strategies...',
     gradient: 'from-purple-500 to-pink-500',
     features: ['Media Relations', 'Crisis Management', 'Reputation Building']
   },
   {
-    icon: <LineChart className="w-8 h-8" />, // Changed icon to LineChart
+    id: 'social-media-management',
+    icon: <LineChart className="w-8 h-8" />,
     title: 'Social Media Management',
-    description: 'Tailored content calendars, emotional storytelling, trend integration, and real-time engagement across platforms.',
+    description: 'Tailored content calendars...',
     gradient: 'from-blue-500 to-cyan-500',
-    features: ['Content Strategy', 'Community Engagement', 'Performance Analytics'] // Updated features
+    features: ['Content Strategy', 'Community Engagement', 'Performance Analytics']
   },
   {
-    icon: <Users className="w-8 h-8" />, // Changed icon to Users
+    id: 'influence-campaigns',
+    icon: <Users className="w-8 h-8" />,
     title: 'Influencer Campaigns',
-    description: 'We handpick value-driven influencers who align with your ethics and message-not just follower count.',
+    description: 'We handpick value-driven influencers...',
     gradient: 'from-red-500 to-orange-500',
-    features: ['Influencer Identification', 'Campaign Management', 'Authenticity & Ethics'] // Updated features
+    features: ['Influencer Identification', 'Campaign Management', 'Authenticity & Ethics']
   },
   {
-    icon: <Palette className="w-8 h-8" />, // Changed icon to Palette
+    id: 'content-creation',
+    icon: <Palette className="w-8 h-8" />,
     title: 'Content Creation',
-    description: 'We create visuals, reels, carousels, and brand stories that touch hearts and start conversations.',
+    description: 'We create visuals, reels...',
     gradient: 'from-green-500 to-teal-500',
-    features: ['Visual Storytelling', 'Short-Form Video', 'Brand Narrative Development'] // Updated features
+    features: ['Visual Storytelling', 'Short-Form Video', 'Brand Narrative Development']
   },
   {
-    icon: <Lightbulb className="w-8 h-8" />, // Changed icon to Lightbulb
-    title: 'Crisis Communication',
-    description: 'Empathy-based, grounded responses during crises. We help your brand stay calm, transparent, and human.',
+    id: 'trend-research',
+    icon: <Lightbulb className="w-8 h-8" />,
+    title: 'Trend & Audience Research',
+    description: 'Empathy-based, grounded responses...',
     gradient: 'from-yellow-500 to-orange-500',
-    features: ['Rapid Response Planning', 'Stakeholder Communication', 'Reputation Recovery'] // Updated features
+    features: ['Rapid Response Planning', 'Stakeholder Communication', 'Reputation Recovery']
   },
   {
+    id: 'event-management',
     icon: <Calendar className="w-8 h-8" />,
     title: 'Event Management',
-    description: 'Curated brand experiences that connect emotionally and resonate long after the event ends.',
+    description: 'Curated brand experiences...',
     gradient: 'from-orange-500 to-pink-500',
     features: ['Complete Event Planning', 'Sponsorship & Partnerships', 'Media Coverage & Publicity']
   }
-];
+]
+
 
 export function ServicesSection() {
   // Fixed type definitions to accept either null or number
@@ -114,7 +122,7 @@ export function ServicesSection() {
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-      
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-20">
@@ -143,7 +151,7 @@ export function ServicesSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {socialPlatforms.map((platform, index) => (
-              <div 
+              <div
                 key={platform.name}
                 className="group relative"
                 onMouseEnter={() => setHoveredPlatform(index)}
@@ -151,17 +159,17 @@ export function ServicesSection() {
               >
                 {/* Glow effect */}
                 <div className={`absolute -inset-0.5 bg-gradient-to-r ${platform.color} rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300`} />
-                
+
                 {/* Card */}
                 <div className="relative bg-gray-900/90 backdrop-blur-xl rounded-2xl p-6 h-full border border-gray-800 overflow-hidden group-hover:border-gray-700 transition-all duration-300">
                   {/* Background emoji */}
                   <div className="absolute top-4 right-4 text-4xl opacity-10 group-hover:opacity-20 transition-opacity">
                     {platform.bgIcon}
                   </div>
-                  
+
                   {/* Top gradient bar */}
                   <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${platform.color}`} />
-                  
+
                   {/* Platform icon and name */}
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${platform.color} text-white`}>
@@ -230,7 +238,7 @@ export function ServicesSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div 
+              <div
                 key={service.title}
                 className="group relative"
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -238,12 +246,12 @@ export function ServicesSection() {
               >
                 {/* Glow effect */}
                 <div className={`absolute -inset-0.5 bg-gradient-to-r ${service.gradient} rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300`} />
-                
+
                 {/* Card */}
                 <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 h-full border border-gray-800 overflow-hidden group-hover:border-gray-700 transition-all duration-300">
                   {/* Top gradient bar */}
                   <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${service.gradient}`} />
-                  
+
                   {/* Icon container */}
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${service.gradient} p-0.5 mb-6`}>
                     <div className="flex items-center justify-center w-full h-full bg-gray-900 rounded-2xl text-white">
@@ -255,7 +263,7 @@ export function ServicesSection() {
                   <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-gray-100 transition-colors">
                     {service.title}
                   </h3>
-                  
+
                   <p className="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors">
                     {service.description}
                   </p>
@@ -272,16 +280,20 @@ export function ServicesSection() {
 
                   {/* CTA Button */}
                   <div className="flex items-center justify-between">
-                    <button className="flex items-center gap-2 text-white font-medium group-hover:gap-3 transition-all duration-300">
+                    <Link
+                      href={`/services/${service.id}`}
+                      className="flex items-center gap-2 text-white font-medium group-hover:gap-3 transition-all duration-300"
+                    >
                       <span>Learn More</span>
                       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
                         <ArrowRight className="w-4 h-4" />
                       </div>
-                    </button>
-                    
+                    </Link>
+
                     {/* Hover indicator */}
                     <div className={`w-12 h-1 rounded-full bg-gradient-to-r ${service.gradient} transition-all duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`} />
                   </div>
+
 
                   {/* Bottom decoration */}
                   <div className="absolute bottom-0 right-0 w-32 h-32 opacity-5">
@@ -294,7 +306,7 @@ export function ServicesSection() {
         </div>
         {/* Bottom CTA */}
         <div className="text-center">
-        <div className="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-sm">
+          <div className="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-sm">
             <div className="flex items-center gap-4">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
