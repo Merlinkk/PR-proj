@@ -11,6 +11,8 @@ import { createClient } from '@/utils/supabase/client';
 import { CardsSkeleton } from '@/components/skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User } from '@supabase/supabase-js';
+import Image from 'next/image';
+import whiteIco from '@/public/white-ico.png';
 
 type Project = {
   id: number;
@@ -88,7 +90,10 @@ export default function AdminPage() {
       <nav className="bg-white/5 backdrop-blur-lg border-b border-white/10 sticky top-0 z-10">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
           <div className="font-medium flex items-center">
-            <div className="h-8 w-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full mr-3"></div>
+            {/* <div className="h-8 w-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full mr-3"></div> */}
+            <Link href="/" className="flex items-center space-x-2 mr-4">
+          <Image src={whiteIco} alt="Site Icon" width={32} height={32} />
+        </Link>
             {userData ? (
               <span className="text-lg">Welcome, {userData.email?.split('@')[0] || 'User'}</span>
             ) : (

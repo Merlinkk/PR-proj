@@ -109,7 +109,7 @@ export function TeamSection() {
 
   return (
     <section 
-      id="team-section"
+      id="team"
       className="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden"
     >
       {/* Animated background */}

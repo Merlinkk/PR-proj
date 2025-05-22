@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'NEST',
   description: 'A modern PR agency specializing in digital communications, brand strategy, and media relations',
+  icons : {
+    icon : '/white-ico.png'
+  }
 };
 
 export default function RootLayout({

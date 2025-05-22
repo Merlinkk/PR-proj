@@ -3,6 +3,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useState, ReactNode } from 'react'
 import { ArrowLeft } from 'lucide-react'
+import { Header } from '@/components/layout/Header';
 
 const services = [
   {
@@ -46,17 +47,19 @@ export default function ServicesLayout({ children }: ServicesLayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const router = useRouter()
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white antialiased">
+    <>
+    <Header />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white antialiased mt-20">
       <div className="max-w-[1400px] mx-auto py-6 px-2 sm:px-4">
         {/* Back button */}
-        <button
+        {/* <button
           onClick={() => router.push('/')}
           className="mb-4 inline-flex items-center gap-1 text-blue-400 hover:text-blue-600 transition-colors text-sm font-medium"
           aria-label="Back to Home"
         >
           <ArrowLeft size={16} />
           <span className="hidden sm:inline">Back</span>
-        </button>
+        </button> */}
 
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-white">Our Services</h1>
@@ -115,5 +118,6 @@ export default function ServicesLayout({ children }: ServicesLayoutProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
