@@ -21,11 +21,6 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   
-  // Return null if not on the root path
-  if (pathname !== '/') {
-    return null;
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -34,6 +29,11 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Return null if not on the root path - moved after all hooks
+  if (pathname !== '/') {
+    return null;
+  }
 
   return (
     <header 

@@ -115,7 +115,7 @@ export function ProjectsSection() {
                 ? JSON.parse(project.results)
                 : []
           }));
-
+          localStorage.setItem("projects",JSON.stringify(formattedProjects));
           setProjects(formattedProjects);
         }
       } catch (err) {
