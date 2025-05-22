@@ -6,12 +6,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import whiteIco from '@/public/white-ico.png';
 
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '#services' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Clients', href: '#clients' },
+  // { name: 'Clients', href: '#clients' },
   { name: 'Team', href: '#team' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -31,7 +33,7 @@ export function Header() {
   }, []);
 
   // Return null if not on the root path - moved after all hooks
-  if (pathname !== '/') {
+  if (!['/'].includes(pathname) && !pathname.includes('/services')) {
     return null;
   }
 
@@ -46,9 +48,10 @@ export function Header() {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold tracking-tighter">
-            NE<span className="text-white/70">ST</span>
-          </Link>
+        <Link href="/" className="flex items-center space-x-2">
+          <Image src={whiteIco} alt="Site Icon" width={32} height={32} />
+          <span className="text-2xl font-bold tracking-tighter">NEST</span>
+        </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
