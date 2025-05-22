@@ -7,17 +7,17 @@ import {
   Users, 
   ArrowRight,
   Star,
-  MessageCircle,
   Camera,
-  Video,
   Briefcase,
   TrendingUp,
   Eye,
   LineChart,
   Palette,
   Lightbulb,
-  Search,
-  Presentation
+  Calendar,
+  Youtube,
+  X,
+  Twitter
 } from 'lucide-react';
 
 const socialPlatforms = [
@@ -26,7 +26,7 @@ const socialPlatforms = [
     icon: <Camera className="w-6 h-6" />,
     users: '2.4B+',
     description: 'Visual storytelling and brand engagement through stunning imagery and stories',
-    color: 'from-pink-500 to-orange-500',
+    color: 'from-pink-500 to-purple-500',
     brandingBenefit: 'Perfect for lifestyle brands and visual content marketing',
     bgIcon: '📸'
   },
@@ -40,17 +40,17 @@ const socialPlatforms = [
     bgIcon: '💼'
   },
   {
-    name: 'TikTok',
-    icon: <Video className="w-6 h-6" />,
+    name: 'YouTube',
+    icon: <Youtube className="w-6 h-6" />,
     users: '1.7B+',
     description: 'Viral video content and reaching younger demographics',
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-red-500 to-pink-500',
     brandingBenefit: 'Exceptional for viral marketing and Gen Z engagement',
     bgIcon: '🎵'
   },
   {
     name: 'Twitter/X',
-    icon: <MessageCircle className="w-6 h-6" />,
+    icon: <Twitter className="w-6 h-6" />,
     users: '450M+',
     description: 'Real-time engagement and thought leadership discussions',
     color: 'from-gray-600 to-gray-800',
@@ -96,19 +96,12 @@ const services = [
     features: ['Rapid Response Planning', 'Stakeholder Communication', 'Reputation Recovery'] // Updated features
   },
   {
-    icon: <Search className="w-8 h-8" />, // Changed icon to Search
-    title: 'Trend & Audience Research',
-    description: 'Monthly data-backed reports to decode behavior, psychology, and sentiment of your digital audience.',
-    gradient: 'from-indigo-500 to-purple-500',
-    features: ['Market Trend Analysis', 'Audience Segmentation', 'Behavioral Insights'] // Updated features
-  },
-  {
-    icon: <Presentation className="w-8 h-8" />, // New icon: Presentation
-    title: 'Political Branding & Strategy',
-    description: 'Specialized strategies for political personalities and causes, with regional insight and emotional clarity.',
-    gradient: 'from-pink-500 to-red-500', // Adjusted gradient for distinctiveness
-    features: ['Campaign Messaging', 'Constituency Engagement', 'Public Perception Management'] // Updated features
-  },
+    icon: <Calendar className="w-8 h-8" />,
+    title: 'Event Management',
+    description: 'Curated brand experiences that connect emotionally and resonate long after the event ends.',
+    gradient: 'from-orange-500 to-pink-500',
+    features: ['Complete Event Planning', 'Sponsorship & Partnerships', 'Media Coverage & Publicity']
+  }
 ];
 
 export function ServicesSection() {
@@ -297,9 +290,11 @@ export function ServicesSection() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
         {/* Bottom CTA */}
-        <div className="text-center col-start-2 col-end-4 row-start-2 row-end-3 flex items-center justify-center">
-          <div className="inline-flex flex-col md:flex-row items-center gap-6 p-28 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-sm">
+        <div className="text-center">
+        <div className="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-sm">
             <div className="flex items-center gap-4">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
@@ -314,8 +309,6 @@ export function ServicesSection() {
             <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105">
               Start Your PR Journey
             </button>
-          </div>
-        </div>
           </div>
         </div>
 

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -18,6 +19,12 @@ const navItems = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  
+  // Return null if not on the root path
+  if (pathname !== '/') {
+    return null;
+  }
 
   useEffect(() => {
     const handleScroll = () => {

@@ -7,10 +7,16 @@ import { Instagram, Twitter, Linkedin, Facebook, ArrowRight } from 'lucide-react
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { usePathname } from 'next/navigation';
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const pathname = usePathname();
+  
+  if (pathname !== '/') {
+    return null;
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
