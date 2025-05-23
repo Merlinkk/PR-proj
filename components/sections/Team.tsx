@@ -95,7 +95,7 @@ export function TeamSection() {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('team-section');
+    const element = document.getElementById('team');
     if (element) {
       observer.observe(element);
     }
