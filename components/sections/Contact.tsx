@@ -24,6 +24,7 @@ import {
   Send, 
   CheckCircle 
 } from 'lucide-react';
+import { createContactAction } from '@/app/actions';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -48,9 +49,18 @@ export function ContactSection() {
   });
 
   const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // Here you would typically send the data to your backend
     setIsSubmitted(true);
+    
+    // Convert form data to FormData
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('message', data.message);
+    if (data.company) {
+      formData.append('company', data.company);
+    }
+    
+    createContactAction(formData);
     
     // Reset form after submission
     setTimeout(() => {

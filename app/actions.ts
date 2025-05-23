@@ -207,3 +207,108 @@ export const deleteProject = async ( projectId : number) => {
 
   return redirect("/protected");
 };
+
+export const createContactAction = async (formData: FormData) => {
+  // Create Supabase client
+  const supabase = await createClient();
+
+  try {
+    // Extract form data
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const company = formData.get("company") as string;
+    const message = formData.get("message") as string;
+
+    // Validate required fields
+    if (!name || !email || !message) {
+      return encodedRedirect("error", "/contact", "Please fill all required fields");
+       return; 
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      // return encodedRedirect("error", "/contact", "Please enter a valid email address");
+      return;       
+    }
+
+    // Insert contact data into database
+    const { data: contact, error: insertError } = await supabase
+      .from("connects")
+      .insert({
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        company: company?.trim() || null,
+        message: message.trim(),
+        created_at: new Date().toISOString(),
+      })
+      .select()
+      .single();
+
+    if (insertError) {
+      console.error("Database insert error:", insertError);
+      // return encodedRedirect("error", "/contact", `Error saving your message: ${insertError.message}`);
+      return; 
+    }
+
+    // Send confirmation email to user
+    try {
+      const userEmailResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'user_confirmation',
+          to: email,
+          userName: name,
+        }),
+      });
+
+      if (!userEmailResponse.ok) {
+        console.error("Failed to send user confirmation email");
+      }
+    } catch (emailError) {
+      console.error("Error sending user confirmation email:", emailError);
+      // Don't fail the entire operation if email fails
+    }
+
+    // Send notification email to admins
+    try {
+      const adminEmailResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'admin_notification',
+          contactData: {
+            name: name.trim(),
+            email: email.trim(),
+            company: company?.trim() || 'Not specified',
+            message: message.trim(),
+            submittedAt: new Date().toLocaleString(),
+          },
+        }),
+      });
+
+      if (!adminEmailResponse.ok) {
+        console.error("Failed to send admin notification email");
+      }
+    } catch (emailError) {
+      console.error("Error sending admin notification email:", emailError);
+      // Don't fail the entire operation if email fails
+    }
+
+    // Revalidate the page
+    // revalidatePath("/contact");
+    return; 
+
+  } catch (error) {
+    console.error("Unhandled error:", error);
+    // return encodedRedirect("error", "/contact", `Unexpected error: ${error instanceof Error ? error.message : "Unknown error"}`);
+    return; 
+  }
+  // return encodedRedirect("success", "/contact", "Thank you for your message! We'll get back to you soon.");
+  return; 
+};
