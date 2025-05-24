@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useRef, ReactNode, useEffect } from 'react';
+import { useState, useRef, ReactNode, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { ExternalLink, Star, ChevronRight } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
+import { memo } from 'react';
 
 // Create Supabase client
 // Replace with your actual Supabase URL and anon key
@@ -29,7 +30,8 @@ type FadeInSectionProps = {
 
 const categories = ["All", "Brand Strategy", "Product Launch", "Crisis Management", "Event PR", "Influencer Marketing", "Digital PR"];
 
-const FadeInSection = ({ children, delay = 0 }: FadeInSectionProps) => {
+// Memoize the FadeInSection component
+const FadeInSection = memo(({ children, delay = 0 }: FadeInSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -43,7 +45,31 @@ const FadeInSection = ({ children, delay = 0 }: FadeInSectionProps) => {
       {children}
     </motion.div>
   );
-};
+});
+FadeInSection.displayName = 'FadeInSection';
+
+// Memoize the filter buttons
+const FilterButton = memo(({ category, filter, setFilter }: { category: string; filter: string; setFilter: (cat: string) => void }) => (
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+  >
+    <Button
+      variant={filter === category ? "default" : "outline"}
+      size="sm"
+      onClick={() => setFilter(category)}
+      className={filter === category
+        ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 hover:from-indigo-600 hover:to-purple-700"
+        : "border-white/20 text-white/70 hover:text-white hover:bg-white/10 hover:border-white/40"
+      }
+    >
+      {category}
+    </Button>
+  </motion.div>
+));
+FilterButton.displayName = 'FilterButton';
 
 // Generate star particles for cosmic theme
 const StarField = () => {
@@ -129,13 +155,19 @@ export function ProjectsSection() {
     fetchProjects();
   }, []);
 
-  // Filter projects based on selected category
-  const filteredProjects = filter === "All"
-    ? projects
-    : projects.filter(project => project.category === filter);
+  // Memoize filtered projects
+  const filteredProjects = useMemo(() => 
+    filter === "All"
+      ? projects
+      : projects.filter(project => project.category === filter),
+    [filter, projects]
+  );
 
-  // Dynamically generate categories based on available project categories
-  const dynamicCategories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  // Memoize dynamic categories
+  const dynamicCategories = useMemo(() => 
+    ["All", ...Array.from(new Set(projects.map(project => project.category)))],
+    [projects]
+  );
 
   return (
     <section id="projects" className="relative py-32 overflow-hidden bg-gradient-to-b from-black via-purple-950/30 to-black">
@@ -172,26 +204,12 @@ export function ProjectsSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/10 via-purple-900/10 to-pink-900/10 rounded-2xl blur-sm -z-10" />
             <div className="flex flex-wrap justify-center gap-2 md:gap-4 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
               {dynamicCategories.map((category, index) => (
-                <motion.div
+                <FilterButton
                   key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
-                >
-                  <Button
-                    variant={filter === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setFilter(category)}
-                    className={filter === category
-                      ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 hover:from-indigo-600 hover:to-purple-700"
-                      : "border-white/20 text-white/70 hover:text-white hover:bg-white/10 hover:border-white/40"
-                    }
-                  >
-                    {category}
-                  </Button>
-                </motion.div>
+                  category={category}
+                  filter={filter}
+                  setFilter={setFilter}
+                />
               ))}
             </div>
           </div>

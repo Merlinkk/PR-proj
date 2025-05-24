@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,6 +25,7 @@ import {
   CheckCircle 
 } from 'lucide-react';
 import { createContactAction } from '@/app/actions';
+import debounce from 'lodash/debounce';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -35,9 +36,8 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function ContactSection() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  
+// Memoize the form component
+const ContactForm = memo(({ onSubmit, isSubmitted }: { onSubmit: (data: FormValues) => void; isSubmitted: boolean }) => {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,7 +48,109 @@ export function ContactSection() {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
+  // Debounce the form submission
+  const debouncedSubmit = useCallback(
+    debounce((data: FormValues) => {
+      onSubmit(data);
+    }, 300),
+    [onSubmit]
+  );
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(debouncedSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Your Name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Jane Smith"
+                    className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email Address</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="jane@example.com"
+                    className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        
+        <FormField
+          control={form.control}
+          name="company"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Company (Optional)</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Your Company"
+                  className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Your Message</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="How can we help you?"
+                  className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30 min-h-[120px]"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <Button 
+          type="submit" 
+          className="w-full bg-white text-black hover:bg-white/90"
+        >
+          Send Message
+          <Send className="ml-2 h-4 w-4" />
+        </Button>
+      </form>
+    </Form>
+  );
+});
+ContactForm.displayName = 'ContactForm';
+
+export function ContactSection() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const handleSubmit = useCallback((data: FormValues) => {
     setIsSubmitted(true);
     
     // Convert form data to FormData
@@ -64,13 +166,12 @@ export function ContactSection() {
     
     // Reset form after submission
     setTimeout(() => {
-      form.reset();
       setIsSubmitted(false);
     }, 3000);
-  };
+  }, []);
 
   return (
-    <section id="contact" className="py-24 ">
+    <section id="contact" className="py-24 relative">
       <div className="container mx-auto px-4 md:px-6">
         <FadeIn className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Lets connect</h2>
@@ -146,92 +247,7 @@ export function ContactSection() {
                     </p>
                   </motion.div>
                 ) : (
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Your Name</FormLabel>
-                              <FormControl>
-                                <Input
-                                  placeholder="Jane Smith"
-                                  className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email Address</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="email"
-                                  placeholder="jane@example.com"
-                                  className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      
-                      <FormField
-                        control={form.control}
-                        name="company"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Company (Optional)</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Your Company"
-                                className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Your Message</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="How can we help you?"
-                                className="bg-white/10 border-white/20 text-white focus-visible:ring-white/30 min-h-[120px]"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-white text-black hover:bg-white/90"
-                      >
-                        Send Message
-                        <Send className="ml-2 h-4 w-4" />
-                      </Button>
-                    </form>
-                  </Form>
+                  <ContactForm onSubmit={handleSubmit} isSubmitted={isSubmitted} />
                 )}
               </div>
             </div>
