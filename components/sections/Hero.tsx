@@ -7,27 +7,9 @@ import { TextReveal } from '@/components/animations/TextReveal';
 import { ArrowDownCircle } from 'lucide-react';
 
 export function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   return (
     <section className="relative  min-h-screen flex items-center pt-24 overflow-hidden">
-      {/* Dynamic background gradient following mouse */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-black via-black to-black/90"
-        animate={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0) 20%)`
-        }}
-        transition={{ type: "spring", damping: 15 }}
-      />
       
       {/* Floating elements */}
       <div className="absolute inset-0 overflow-hidden">
