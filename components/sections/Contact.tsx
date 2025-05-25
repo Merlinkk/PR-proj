@@ -149,9 +149,10 @@ ContactForm.displayName = 'ContactForm';
 
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
   const handleSubmit = useCallback((data: FormValues) => {
-    setIsSubmitted(true);
+    setIsLoading(true);
     
     // Convert form data to FormData
     const formData = new FormData();
@@ -164,10 +165,16 @@ export function ContactSection() {
     
     createContactAction(formData);
     
-    // Reset form after submission
+    // Show loading for 2-3 seconds before showing success message
     setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+      setIsLoading(false);
+      setIsSubmitted(true);
+      
+      // Reset form after showing success message
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    }, 5000); // 2.5 seconds loading time
   }, []);
 
   return (
@@ -234,7 +241,16 @@ export function ContactSection() {
               <div className="relative">
                 <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
                 
-                {isSubmitted ? (
+                {isLoading ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex flex-col items-center justify-center py-8"
+                  >
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mb-4"></div>
+                    <p className="text-white/70 text-center">Sending your message...</p>
+                  </motion.div>
+                ) : isSubmitted ? (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

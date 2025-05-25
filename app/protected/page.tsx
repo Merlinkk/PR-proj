@@ -144,11 +144,18 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-gray-800">
-      {/* Navbar with glass effect */}
-      <nav className="bg-white/5 backdrop-blur-lg border-b border-white/10 sticky top-0 z-10">
+    <div className="min-h-screen flex flex-col bg-zinc-950 relative">
+      {/* Fixed background gradient that covers full viewport height */}
+      <div className="fixed inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 -z-10"></div>
+      
+      {/* Fixed floating elements for visual interest */}
+      <div className="fixed top-1/4 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
+      <div className="fixed bottom-1/3 right-1/4 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl -z-10"></div>
+
+      {/* Navbar with proper backdrop blur and z-index */}
+      <nav className="bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-800/50 sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
-          <div className="font-medium flex items-center">
+          <div className="font-medium flex items-center text-white">
             <Link href="/" className="flex items-center space-x-2 mr-4">
               <Image src={whiteIco} alt="Site Icon" width={32} height={32} />
             </Link>
@@ -163,7 +170,7 @@ export default function AdminPage() {
               type="submit" 
               variant="outline" 
               size="sm" 
-              className="border-white/20 hover:bg-white/10 transition-all duration-200"
+              className="border-zinc-700/50 bg-zinc-800/50 text-white hover:bg-zinc-700/50 transition-all duration-200"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Sign out
@@ -172,7 +179,7 @@ export default function AdminPage() {
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24">
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24 relative z-10 flex-1">
         <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -180,29 +187,29 @@ export default function AdminPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-white">
               Admin Dashboard
             </h1>
-            <p className="text-white/70">Manage your PR agency content and projects</p>
+            <p className="text-zinc-400">Manage your PR agency content and projects</p>
           </motion.div>
 
           <Tabs defaultValue="projects" className="space-y-6">
-            <TabsList className="grid grid-cols-2 bg-white/5 p-1 rounded-xl">
-              <TabsTrigger value="projects" className="data-[state=active]:bg-white/10 data-[state=active]:text-white">
+            <TabsList className="grid grid-cols-2 bg-zinc-900/50 border border-zinc-800/50 p-1 rounded-xl">
+              <TabsTrigger value="projects" className="data-[state=active]:bg-zinc-700/50 data-[state=active]:text-white text-zinc-400">
                 Projects
               </TabsTrigger>
-              <TabsTrigger value="clients" className="data-[state=active]:bg-white/10 data-[state=active]:text-white">
+              <TabsTrigger value="clients" className="data-[state=active]:bg-zinc-700/50 data-[state=active]:text-white text-zinc-400">
                 Clients
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="projects">
-              <Card className="bg-white/5 border-white/10 backdrop-blur-sm rounded-xl overflow-hidden">
+              <Card className="bg-zinc-900/50 border-zinc-800/50 backdrop-blur-sm rounded-xl overflow-hidden">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle className="text-xl">Project Management</CardTitle>
-                      <CardDescription className="text-white/60">Create and manage your PR projects</CardDescription>
+                      <CardTitle className="text-xl text-white">Project Management</CardTitle>
+                      <CardDescription className="text-zinc-400">Create and manage your PR projects</CardDescription>
                     </div>
                     <div className="flex items-center gap-3">
                       <Button 
@@ -210,12 +217,12 @@ export default function AdminPage() {
                         size="icon" 
                         onClick={refreshProjects} 
                         disabled={refreshing || loading}
-                        className="border-white/20 hover:bg-white/10 transition-all duration-200"
+                        className="border-zinc-700/50 bg-zinc-800/50 text-white hover:bg-zinc-700/50 transition-all duration-200"
                       >
                         <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
                       </Button>
                       <Link href="/protected/projects/new">
-                        <Button className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-200">
+                        <Button className="bg-white text-zinc-900 hover:bg-zinc-100 transition-all duration-200 font-medium">
                           <PlusCircle className="h-4 w-4 mr-2" />
                           Add Project
                         </Button>
@@ -233,13 +240,13 @@ export default function AdminPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5 }}
-                      className="rounded-md border border-white/10 overflow-hidden"
+                      className="rounded-md border border-zinc-800/50 overflow-hidden"
                     >
-                      <div className="grid grid-cols-12 bg-white/10 p-4 gap-4">
-                        <div className="col-span-1 font-medium">#</div>
-                        <div className="col-span-4 font-medium">Project Name</div>
-                        <div className="col-span-3 font-medium">Category</div>
-                        <div className="col-span-4 font-medium text-right">Actions</div>
+                      <div className="grid grid-cols-12 bg-zinc-800/50 p-4 gap-4">
+                        <div className="col-span-1 font-medium text-zinc-300">#</div>
+                        <div className="col-span-4 font-medium text-zinc-300">Project Name</div>
+                        <div className="col-span-3 font-medium text-zinc-300">Category</div>
+                        <div className="col-span-4 font-medium text-right text-zinc-300">Actions</div>
                       </div>
 
                       <AnimatePresence>
@@ -248,7 +255,7 @@ export default function AdminPage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="p-12 text-center text-white/50"
+                            className="p-12 text-center text-zinc-500"
                           >
                             <p>No projects found. Create your first project!</p>
                           </motion.div>
@@ -260,13 +267,13 @@ export default function AdminPage() {
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.3 }}
-                              className="border-t border-white/10"
+                              className="border-t border-zinc-800/50"
                             >
-                              <div className="grid grid-cols-12 p-4 gap-4 items-center hover:bg-white/5 transition-colors">
-                                <div className="col-span-1 text-white/70">{project.id}</div>
-                                <div className="col-span-4 font-medium">{project.title}</div>
-                                <div className="col-span-3 text-white/70">
-                                  <span className="px-2 py-1 rounded-full bg-white/10 text-xs font-medium">
+                              <div className="grid grid-cols-12 p-4 gap-4 items-center hover:bg-zinc-800/30 transition-colors">
+                                <div className="col-span-1 text-zinc-400">{project.id}</div>
+                                <div className="col-span-4 font-medium text-white">{project.title}</div>
+                                <div className="col-span-3 text-zinc-400">
+                                  <span className="px-2 py-1 rounded-full bg-zinc-800/50 text-xs font-medium text-zinc-300">
                                     {project.category}
                                   </span>
                                 </div>
@@ -274,7 +281,7 @@ export default function AdminPage() {
                                   <Button 
                                     variant="outline" 
                                     size="sm" 
-                                    className="border-white/20 hover:bg-white/10 transition-all duration-200"
+                                    className="border-zinc-700/50 bg-zinc-800/50 text-white hover:bg-zinc-700/50 transition-all duration-200"
                                   >
                                     <Edit2 className="h-4 w-4 mr-2" />
                                     Edit
@@ -284,7 +291,7 @@ export default function AdminPage() {
                                     variant="outline" 
                                     size="sm" 
                                     disabled={deletingId === project.id}
-                                    className="border-red-400/20 hover:bg-red-600/30 bg-red-600/10 text-red-300 transition-all duration-200"
+                                    className="border-red-500/30 hover:bg-red-500/20 bg-red-500/10 text-red-400 transition-all duration-200"
                                   >
                                     {deletingId === project.id ? (
                                       <>
@@ -307,7 +314,7 @@ export default function AdminPage() {
                     </motion.div>
                   </CardContent>
                 )}
-                <CardFooter className="flex justify-between border-t border-white/10 p-4 text-white/40 text-sm">
+                <CardFooter className="flex justify-between border-t border-zinc-800/50 p-4 text-zinc-500 text-sm">
                   <p>{projects.length} projects found</p>
                   <p>Last updated: {new Date().toLocaleTimeString()}</p>
                 </CardFooter>
@@ -315,12 +322,12 @@ export default function AdminPage() {
             </TabsContent>
 
             <TabsContent value="clients">
-              <Card className="bg-white/5 border-white/10 backdrop-blur-sm rounded-xl overflow-hidden">
+              <Card className="bg-zinc-900/50 border-zinc-800/50 backdrop-blur-sm rounded-xl overflow-hidden">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle className="text-xl">Client Inquiries</CardTitle>
-                      <CardDescription className="text-white/60">View and manage client contact requests</CardDescription>
+                      <CardTitle className="text-xl text-white">Client Inquiries</CardTitle>
+                      <CardDescription className="text-zinc-400">View and manage client contact requests</CardDescription>
                     </div>
                     <div className="flex items-center gap-3">
                       <Button 
@@ -328,7 +335,7 @@ export default function AdminPage() {
                         size="icon" 
                         onClick={refreshClients} 
                         disabled={clientsRefreshing || clientsLoading}
-                        className="border-white/20 hover:bg-white/10 transition-all duration-200"
+                        className="border-zinc-700/50 bg-zinc-800/50 text-white hover:bg-zinc-700/50 transition-all duration-200"
                       >
                         <RefreshCw className={`h-4 w-4 ${clientsRefreshing ? 'animate-spin' : ''}`} />
                       </Button>
@@ -345,15 +352,15 @@ export default function AdminPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5 }}
-                      className="rounded-md border border-white/10 overflow-hidden"
+                      className="rounded-md border border-zinc-800/50 overflow-hidden"
                     >
-                      <div className="grid grid-cols-12 bg-white/10 p-4 gap-4">
-                        <div className="col-span-1 font-medium">#</div>
-                        <div className="col-span-3 font-medium">Name</div>
-                        <div className="col-span-3 font-medium">Email</div>
-                        <div className="col-span-2 font-medium">Company</div>
-                        <div className="col-span-2 font-medium">Date</div>
-                        <div className="col-span-1 font-medium text-right">Actions</div>
+                      <div className="grid grid-cols-12 bg-zinc-800/50 p-4 gap-4">
+                        <div className="col-span-1 font-medium text-zinc-300">#</div>
+                        <div className="col-span-3 font-medium text-zinc-300">Name</div>
+                        <div className="col-span-3 font-medium text-zinc-300">Email</div>
+                        <div className="col-span-2 font-medium text-zinc-300">Company</div>
+                        <div className="col-span-2 font-medium text-zinc-300">Date</div>
+                        <div className="col-span-1 font-medium text-right text-zinc-300">Actions</div>
                       </div>
 
                       <AnimatePresence>
@@ -362,7 +369,7 @@ export default function AdminPage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="p-12 text-center text-white/50"
+                            className="p-12 text-center text-zinc-500"
                           >
                             <p>No client inquiries found.</p>
                           </motion.div>
@@ -374,23 +381,23 @@ export default function AdminPage() {
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.3 }}
-                              className="border-t border-white/10"
+                              className="border-t border-zinc-800/50"
                             >
-                              <div className="grid grid-cols-12 p-4 gap-4 items-center hover:bg-white/5 transition-colors">
-                                <div className="col-span-1 text-white/70">{client.id}</div>
-                                <div className="col-span-3 font-medium flex items-center">
-                                  <User className="h-4 w-4 mr-2 text-white/50" />
+                              <div className="grid grid-cols-12 p-4 gap-4 items-center hover:bg-zinc-800/30 transition-colors">
+                                <div className="col-span-1 text-zinc-400">{client.id}</div>
+                                <div className="col-span-3 font-medium flex items-center text-white">
+                                  <User className="h-4 w-4 mr-2 text-zinc-500" />
                                   {client.name}
                                 </div>
-                                <div className="col-span-3 text-white/70 flex items-center">
-                                  <Mail className="h-4 w-4 mr-2 text-white/50" />
+                                <div className="col-span-3 text-zinc-400 flex items-center">
+                                  <Mail className="h-4 w-4 mr-2 text-zinc-500" />
                                   {client.email}
                                 </div>
-                                <div className="col-span-2 text-white/70 flex items-center">
-                                  <Building2 className="h-4 w-4 mr-2 text-white/50" />
+                                <div className="col-span-2 text-zinc-400 flex items-center">
+                                  <Building2 className="h-4 w-4 mr-2 text-zinc-500" />
                                   {client.company || 'N/A'}
                                 </div>
-                                <div className="col-span-2 text-white/70 text-sm">
+                                <div className="col-span-2 text-zinc-400 text-sm">
                                   {formatDate(client.created_at)}
                                 </div>
                                 <div className="col-span-1 flex justify-end gap-2">
@@ -400,18 +407,18 @@ export default function AdminPage() {
                                         variant="outline" 
                                         size="sm" 
                                         onClick={() => setSelectedClient(client)}
-                                        className="border-white/20 hover:bg-white/10 transition-all duration-200"
+                                        className="border-zinc-700/50 bg-zinc-800/50 text-white hover:bg-zinc-700/50 transition-all duration-200"
                                       >
                                         <Eye className="h-4 w-4" />
                                       </Button>
                                     </DialogTrigger>
-                                    <DialogContent className="bg-gray-900 border-white/10 text-white max-w-2xl">
+                                    <DialogContent className="bg-zinc-900 border-zinc-800/50 text-white max-w-2xl">
                                       <DialogHeader>
-                                        <DialogTitle className="flex items-center">
+                                        <DialogTitle className="flex items-center text-white">
                                           <User className="h-5 w-5 mr-2" />
                                           Message from {client.name}
                                         </DialogTitle>
-                                        <DialogDescription className="text-white/70">
+                                        <DialogDescription className="text-zinc-400">
                                           <div className="space-y-2 mt-4">
                                             <div className="flex items-center">
                                               <Mail className="h-4 w-4 mr-2" />
@@ -423,16 +430,16 @@ export default function AdminPage() {
                                                 {client.company}
                                               </div>
                                             )}
-                                            <div className="text-xs text-white/50">
+                                            <div className="text-xs text-zinc-500">
                                               Received on {formatDate(client.created_at)}
                                             </div>
                                           </div>
                                         </DialogDescription>
                                       </DialogHeader>
                                       <div className="mt-6">
-                                        <h4 className="font-medium mb-3">Message:</h4>
-                                        <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-                                          <p className="text-white/90 whitespace-pre-wrap leading-relaxed">
+                                        <h4 className="font-medium mb-3 text-white">Message:</h4>
+                                        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4">
+                                          <p className="text-zinc-300 whitespace-pre-wrap leading-relaxed">
                                             {client.message}
                                           </p>
                                         </div>
@@ -444,7 +451,7 @@ export default function AdminPage() {
                                     variant="outline" 
                                     size="sm" 
                                     disabled={deletingClientId === client.id}
-                                    className="border-red-400/20 hover:bg-red-600/30 bg-red-600/10 text-red-300 transition-all duration-200"
+                                    className="border-red-500/30 hover:bg-red-500/20 bg-red-500/10 text-red-400 transition-all duration-200"
                                   >
                                     {deletingClientId === client.id ? (
                                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -461,7 +468,7 @@ export default function AdminPage() {
                     </motion.div>
                   </CardContent>
                 )}
-                <CardFooter className="flex justify-between border-t border-white/10 p-4 text-white/40 text-sm">
+                <CardFooter className="flex justify-between border-t border-zinc-800/50 p-4 text-zinc-500 text-sm">
                   <p>{clients.length} client inquiries found</p>
                   <p>Last updated: {new Date().toLocaleTimeString()}</p>
                 </CardFooter>
