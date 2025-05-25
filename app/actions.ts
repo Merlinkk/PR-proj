@@ -67,6 +67,15 @@ export const forgotPasswordAction = async (formData: FormData) => {
     return encodedRedirect("error", "/forgot-password", "Email is required");
   }
 
+  // Check if email is from officialnest.in domain
+  if (!email.endsWith("@officialnest.in")) {
+    return encodedRedirect(
+      "error", 
+      "/forgot-password", 
+      "Only @officialnest.in email addresses are allowed"
+    );
+  }
+
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${origin}/auth/callback?redirect_to=/protected/reset-password`,
   });
@@ -311,4 +320,42 @@ export const createContactAction = async (formData: FormData) => {
   }
   // return encodedRedirect("success", "/contact", "Thank you for your message! We'll get back to you soon.");
   return; 
+};
+
+
+export const resetPasswordAction = async (formData: FormData) => {
+  const supabase = await createClient();
+
+  const password = formData.get("password") as string;
+  const confirmPassword = formData.get("confirmPassword") as string;
+
+  if (!password || !confirmPassword) {
+    encodedRedirect(
+      "error",
+      "/protected/reset-password",
+      "Password and confirm password are required",
+    );
+  }
+
+  if (password !== confirmPassword) {
+    encodedRedirect(
+      "error",
+      "/protected/reset-password",
+      "Passwords do not match",
+    );
+  }
+
+  const { error } = await supabase.auth.updateUser({
+    password: password,
+  });
+
+  if (error) {
+    encodedRedirect(
+      "error",
+      "/protected/reset-password",
+      "Password update failed",
+    );
+  }
+
+  encodedRedirect("success", "/protected/reset-password", "Password updated");
 };

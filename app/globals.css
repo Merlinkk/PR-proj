@@ -80,3 +80,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.custom-cursor {
+  mix-blend-mode: difference; /*Cool effect for cursor on various backgrounds*/
+}
