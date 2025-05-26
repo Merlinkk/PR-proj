@@ -10,19 +10,14 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   experimental: {
-    serverActions: true,
-    optimizeCss: true, // Enable CSS optimization
-    optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'], // Optimize large icon packages
+    serverActions: {}, // ✅ Changed from true to object
+    optimizeCss: true,
+    optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
   },
-  // Enable compression
   compress: true,
-  // Enable production source maps for better debugging
   productionBrowserSourceMaps: true,
-  // Optimize build output
   swcMinify: true,
-  // Configure webpack for better performance
   webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size in production
     if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,

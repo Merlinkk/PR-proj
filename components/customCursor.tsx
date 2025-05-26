@@ -6,8 +6,8 @@ const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const lastX = useRef(0);
   const lastY = useRef(0);
-  const animationId = useRef<number>();
-  const resetTimeoutId = useRef<number>();
+  const animationId = useRef<number | undefined>(undefined);
+  const resetTimeoutId = useRef<number | undefined>(undefined);
 
   // Reset cursor to circular state
   const resetCursor = useCallback(() => {
