@@ -199,7 +199,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Our Office</h4>
-                    <p className="text-white/70">EARTH 10001</p>
+                    <p className="text-white/70">Gautam budh nagar, C-127, Block C, Sector 105, noida,- 201301</p>
                   </div>
                 </div>
                 
@@ -209,7 +209,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Email Us</h4>
-                    <p className="text-white/70">hello@nest.com<br />info@nest.com</p>
+                    <p className="text-white/70">prbynest@gamil.com</p>
                   </div>
                 </div>
                 
@@ -219,15 +219,9 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Call Us</h4>
-                    <p className="text-white/70">+91 0000-000-000<br />+91 0000-000-000</p>
+                    <p className="text-white/70">+91 9286346784<br />+91 8278881643</p>
                   </div>
                 </div>
-              </div>
-              
-              <div className="mt-12">
-                <h3 className="text-xl font-bold mb-4">Working Hours</h3>
-                <p className="text-white/70 mb-2">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                <p className="text-white/70">Weekends: By appointment only</p>
               </div>
             </div>
           </FadeIn>

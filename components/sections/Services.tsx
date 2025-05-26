@@ -314,7 +314,7 @@ export function ServicesSection() {
                 ))}
               </div>
               <div className="text-left">
-                <div className="text-white font-bold text-lg">Join 500+ satisfied clients</div>
+                <div className="text-white font-bold text-lg">Join many satisfied clients</div>
                 <div className="text-gray-400 text-sm">Trusted by leading brands worldwide</div>
               </div>
             </div>

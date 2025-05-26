@@ -125,7 +125,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.5 }}
@@ -139,7 +139,7 @@ export function HeroSection() {
             <ArrowDownCircle className="w-10 h-10 text-white/50 hover:text-white transition-colors" />
           </a>
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }

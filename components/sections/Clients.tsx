@@ -80,17 +80,17 @@ export function ClientsSection() {
   };
 
   return (
-    <section id="clients" className="py-24">
+    <section id="clients" className="">
       <div className="container mx-auto px-4 md:px-6">
-        <FadeIn className="text-center mb-16">
+        {/* <FadeIn className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Industry Leaders</h2>
           <p className="text-white/70 max-w-3xl mx-auto text-lg">
             We've helped ambitious brands elevate their presence and achieve remarkable results.
           </p>
-        </FadeIn>
+        </FadeIn> */}
 
         {/* Testimonials Carousel */}
-        <FadeIn className="mb-20">
+        {/* <FadeIn className="mb-20">
           <div 
             className="relative bg-white/5 backdrop-blur-sm rounded-xl p-8 md:p-12 border border-white/10 overflow-hidden"
             onMouseEnter={pauseAutoAdvance}
@@ -155,10 +155,10 @@ export function ClientsSection() {
               ))}
             </div>
           </div>
-        </FadeIn>
+        </FadeIn> */}
 
         {/* Brands Logos */}
-        <FadeIn>
+        {/* <FadeIn>
           <Separator className="mb-12 bg-white/10" />
           <div className="text-center mb-8">
             <h3 className="text-xl font-medium text-white/70">Brands we've worked with</h3>
@@ -178,7 +178,7 @@ export function ClientsSection() {
               </FadeIn>
             ))}
           </div>
-        </FadeIn>
+        </FadeIn> */}
       </div>
     </section>
   );

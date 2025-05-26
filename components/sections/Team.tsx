@@ -32,12 +32,12 @@ const teamMembers = [
     image: "https://firebasestorage.googleapis.com/v0/b/start-it-up-421905.appspot.com/o/WhatsApp%20Image%202025-05-20%20at%2023.28.32_73da70c7.jpg?alt=media&token=aae78d5f-4378-4c1f-9add-f79bc34c32f7",
     gradient: "from-purple-500 via-pink-500 to-red-500",
     icon: <Brain className="w-5 h-5" />,
-    experience: "5+ Years",
-    projects: "150+",
+    experience: "1+ Years",
+    projects: "10",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/mannat-patyal-977b9421a/",
       twitter: "#",
-      email: "mailto:mannat@nest.com",
+      email: "mailto:mannat@officialnest.in",
     },
   },
   {
@@ -51,25 +51,25 @@ const teamMembers = [
     experience: "4+ Years",
     projects: "200+",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/uday-thakur-7b3b8a27b/",
       twitter: "#",
-      email: "mailto:uday@nest.com",
+      email: "mailto:uday@officialnest.in",
     },
   },
   {
     name: "Satyam Sharma",
-    role: "SEO Specialist",
+    role: "Software Product Developer",
     specialties: ["Technical SEO", "Analytics", "Content Strategy"],
-    bio: "SEO specialist with hands-on industry experience. Skilled in developing and implementing data-driven SEO strategies that improve search rankings, increase organic traffic, and enhance online visibility across various domains.",
+    bio: "Software Product Developer with hands-on industry experience in designing, building, and scaling robust digital solutions. Proficient in transforming user needs into efficient, scalable software products",
     image: "https://media.licdn.com/dms/image/v2/D5603AQEGd7dEr_LTew/profile-displayphoto-shrink_800_800/B56ZZWq5M2GoAc-/0/1745210807848?e=1753315200&v=beta&t=TTzwISw9toWGjMsDABUST7jY8eDh99CAfVg6cOhOtY8",
     gradient: "from-green-500 via-emerald-500 to-teal-500",
     icon: <Target className="w-5 h-5" />,
     experience: "3+ Years",
     projects: "100+",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/satyam-sharma-a21041289/",
       twitter: "#",
-      email: "mailto:satyam@nest.com",
+      email: "mailto:satyam@officialnest.in",
     },
   },
   {
@@ -83,9 +83,9 @@ const teamMembers = [
     experience: "6+ Years",
     projects: "80+",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/anshul-kashyap-60930012b/",
       twitter: "#",
-      email: "mailto:anshul@nest.com",
+      email: "mailto:anshul@officialnest.com",
     },
   },
 ];
@@ -205,18 +205,6 @@ export function TeamSection() {
 
                       {/* Stats */}
                       <div className="space-y-3">
-                        <div className={`bg-black/70 backdrop-blur-md rounded-lg px-4 py-3 border border-white/10 text-center transform transition-all duration-500 delay-200 ${
-                          hoveredIndex === index ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                        }`}>
-                          <div className="text-xs text-white/70 mb-1">Experience</div>
-                          <div className="text-lg font-bold text-white">{member.experience}</div>
-                        </div>
-                        <div className={`bg-black/70 backdrop-blur-md rounded-lg px-4 py-3 border border-white/10 text-center transform transition-all duration-500 delay-300 ${
-                          hoveredIndex === index ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                        }`}>
-                          <div className="text-xs text-white/70 mb-1">Projects</div>
-                          <div className="text-lg font-bold text-white">{member.projects}</div>
-                        </div>
                       </div>
                     </div>
 
@@ -286,15 +274,18 @@ export function TeamSection() {
                       </div>
 
                       {/* View profile button */}
-                      <button 
-                        className={`inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-gradient-to-r ${member.gradient} rounded-xl text-white text-xs md:text-sm font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 ${
-                          hoveredIndex === index ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-                        }`}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <span>Connect</span>
-                        <ArrowUpRight size={12} className="md:w-3.5 md:h-3.5" />
-                      </button>
+                        <button 
+                          className={`inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-gradient-to-r ${member.gradient} rounded-xl text-white text-xs md:text-sm font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 ${
+                            hoveredIndex === index ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                          }`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(member.socials.linkedin, '_blank');
+                          }}
+                        >
+                          <span>Connect</span>
+                          <ArrowUpRight size={12} className="md:w-3.5 md:h-3.5" />
+                        </button>
                     </div>
 
                     {/* Animated accent line */}
@@ -336,12 +327,12 @@ export function TeamSection() {
         )}
 
         {/* Team stats */}
-        <div className={`mt-16 md:mt-20 transition-all duration-700 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* <div className={`mt-16 md:mt-20 transition-all duration-700 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
               { icon: <Users className="w-5 h-5 md:w-6 md:h-6" />, label: "Team Members", value: "4", gradient: "from-purple-500 to-pink-500" },
-              { icon: <Target className="w-5 h-5 md:w-6 md:h-6" />, label: "Projects", value: "500+", gradient: "from-blue-500 to-cyan-500" },
-              { icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />, label: "Years Experience", value: "15+", gradient: "from-green-500 to-teal-500" },
+              { icon: <Target className="w-5 h-5 md:w-6 md:h-6" />, label: "Projects", value: "10+", gradient: "from-blue-500 to-cyan-500" },
+              { icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />, label: "Years Experience", value: "10", gradient: "from-green-500 to-teal-500" },
               { icon: <Star className="w-5 h-5 md:w-6 md:h-6" />, label: "Client Satisfaction", value: "99%", gradient: "from-yellow-500 to-orange-500" }
             ].map((stat, index) => (
               <div key={index} className="text-center p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm group hover:bg-white/10 transition-all duration-500 hover:scale-105">
@@ -353,7 +344,7 @@ export function TeamSection() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
       <style jsx>{`
